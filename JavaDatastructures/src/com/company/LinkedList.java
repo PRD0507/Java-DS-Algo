@@ -39,21 +39,43 @@ public class LinkedList {
         head = node;
 
     }
-
+ 
     public int getLength(){
+        Node temp = head;
+        int count=0;
+        while(temp!=null){
 
+            count++;
+            temp = temp.next;
+        }
+        return count;
     }
-
+    
     public void insert(int index, int data){
-        Node node = new Node();
-        node.data = data;
-        node.next = null;
 
-        int count =0;
-        Node n = head;
-        while(count != index-1){
-            n = n.next;
+        if((index<0) && (index > getLength())){
+            System.out.println("Invalid Syntax");
+            return;
+        }
+        else{
 
+            if(index-1 == 0) {
+                insertBegining(data);
+            }
+            else{
+                Node node = new Node();
+                node.data = data;
+                int count = 0;
+                Node n = head;
+                while (count+1 != index-1) {
+
+                    n = n.next;
+                    count++;
+                }
+
+                node.next = n.next;
+                n.next = node;
+            }
         }
 
     }
